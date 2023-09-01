@@ -1,7 +1,7 @@
 {
   "name": "nuxt-laravel-precognition",
   "type": "module",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Nuxt module to work with Laravel Precognition and $fetch",
   "author": {
     "name": "sot1986",
