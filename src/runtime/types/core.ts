@@ -143,3 +143,5 @@ type CanBeFile<TData> = TData extends File
       : never
 
 type _TestCanBeFile = CanBeFile<string | null>
+
+export {}

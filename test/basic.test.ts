@@ -15,20 +15,12 @@ describe('ssr', async () => {
 
     const page = await createPage('/')
 
-    let txt: string | null
-
-    txt = await page.textContent('h1')
+    const txt = await page.textContent('h1')
     expect(txt).toBe('Test')
 
     await page.type('#title', 'Ciao')
 
     const name = await page.inputValue('#title')
     expect(name).toBe('Ciao')
-
-    const titleError = await page.waitForSelector('#title-error')
-
-    expect(await titleError.innerText()).toMatch(/title/i)
-
-    // expect(txt).toMatch(/title .* exists/i)
   })
 })

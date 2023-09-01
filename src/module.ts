@@ -1,4 +1,4 @@
-import { addImports, addPlugin, createResolver, defineNuxtModule } from '@nuxt/kit'
+import { addImports, addPlugin, addTemplate, createResolver, defineNuxtModule } from '@nuxt/kit'
 import { defu } from 'defu'
 
 // Module options TypeScript interface definition
@@ -11,8 +11,8 @@ export interface ModuleOptions {
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
-    name: 'laravel-precognition',
-    configKey: 'laravelPrecognition',
+    name: 'nuxt-laravel-precognition',
+    configKey: 'nuxtLaravelPrecognition',
     compatibility: {
       nuxt: '^3.0.0',
     },
@@ -23,8 +23,8 @@ export default defineNuxtModule<ModuleOptions>({
     fingerprintBaseUrl: '',
   },
   setup(options, nuxt) {
-    nuxt.options.runtimeConfig.public.laravelPrecognition = defu(
-      (nuxt.options.runtimeConfig.public.laravelPrecognition as Partial<ModuleOptions>),
+    nuxt.options.runtimeConfig.public.nuxtLaravelPrecognition = defu(
+      (nuxt.options.runtimeConfig.public.nuxtLaravelPrecognition as Partial<ModuleOptions>),
       {
         validationTimeout: options.validationTimeout,
         fingerprintBaseUrl: options.fingerprintBaseUrl,
@@ -41,5 +41,35 @@ export default defineNuxtModule<ModuleOptions>({
         name: 'useForm',
       },
     ])
+
+    addTemplate({
+      filename: 'types/nuxt-laravel-precognition.d.ts',
+      getContents: () => [
+        `import type { Client } from '${resolver.resolve('./runtime/types/core')}'`,
+        '',
+        'interface NuxtLaravelPrecognition {',
+        '  $precognition: {',
+        '    client: Client',
+        '    config: {',
+        '      validationTimeout: number',
+        '    }',
+        '  }',
+        '}',
+        '',
+        'declare module \'#app\' {',
+        '  interface NuxtApp extends NuxtLaravelPrecognition {}',
+        '}',
+        '',
+        'declare module \'vue\' {',
+        '  interface ComponentCustomProperties extends NuxtLaravelPrecognition {}',
+        '}',
+        '',
+        'export {}',
+      ].join('\n'),
+    })
+
+    nuxt.hook('prepare:types', (options) => {
+      options.references.push({ path: resolver.resolve(nuxt.options.buildDir, 'types/nuxt-laravel-precognition.d.ts') })
+    })
   },
 })

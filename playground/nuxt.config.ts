@@ -1,6 +1,6 @@
 export default defineNuxtConfig({
   modules: ['../src/module'],
-  laravelPrecognition: {},
+  nuxtLaravelPrecognition: {},
   devtools: { enabled: true },
   postcss: {
     plugins: {

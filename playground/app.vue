@@ -8,7 +8,7 @@ defineOptions({
   inheritAttrs: false,
 })
 
-const { $fetchCsrfToken, $api } = useNuxtApp()
+const { $fetchCsrfToken, $api, $precognition } = useNuxtApp()
 
 const PostsSchema = z.object({
   data: z.array(z.object({

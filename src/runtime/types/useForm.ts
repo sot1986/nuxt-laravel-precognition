@@ -20,3 +20,5 @@ export interface Form<Data extends Record<string, unknown>> {
   validateFiles(): Form<Data>
   validator(): Validator
 }
+
+export {}

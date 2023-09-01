@@ -1,10 +1,21 @@
 {
-  "name": "nuxt-laravel-precognition",
+  "name": "@sot/nuxt-laravel-precognition",
   "type": "module",
   "version": "0.0.1",
-  "description": "Nuxt module to work with Laravel Precognition and ofetch API",
+  "description": "Nuxt module to work with Laravel Precognition and $fetch",
+  "author": {
+    "name": "Sot",
+    "email": "sot@8dplus.com"
+  },
   "license": "MIT",
-  "repository": "sot/nuxt-laravel-precognition",
+  "repository": "https://github.com/sot1986/nuxt-laravel-precognition.git",
+  "keywords": [
+    "Nuxt",
+    "Laravel",
+    "Precognition",
+    "Nuxt-Precognition",
+    "ofetch"
+  ],
   "exports": {
     ".": {
       "types": "./dist/types.d.ts",
@@ -23,6 +34,7 @@
     "dev:build": "nuxi build playground",
     "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground",
     "release": "npm run lint && npm run test && npm run prepack && changelogen --release && npm publish && git push --follow-tags",
+    "release:locally": "npm run lint && npm run test && npm run prepack && npm pack && mv ./sot-nuxt-laravel-*.tgz ../Released",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "test": "vitest run",
