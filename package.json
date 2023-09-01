@@ -8,12 +8,15 @@
     "email": "sot@8dplus.com"
   },
   "license": "MIT",
-  "repository": "https://github.com/sot1986/nuxt-laravel-precognition.git",
+  "homepage": "https://github.com/sot1986/nuxt-laravel-precognition",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sot1986/nuxt-laravel-precognition"
+  },
   "keywords": [
-    "Nuxt",
-    "Laravel",
-    "Precognition",
-    "Nuxt-Precognition",
+    "nuxt",
+    "laravel",
+    "precognition",
     "ofetch"
   ],
   "exports": {
@@ -42,7 +45,6 @@
   },
   "dependencies": {
     "@nuxt/kit": "^3.6.5",
-    "@vueuse/core": "^10.3.0",
     "defu": "^6.1.2",
     "lodash.clonedeep": "^4.5.0",
     "lodash.get": "^4.4.2",
