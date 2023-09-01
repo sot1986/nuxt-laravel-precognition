@@ -5,7 +5,7 @@ import { assertIsServerGeneratedError, isSuccess, mergeConfig, resolveConfig, re
 import { defineNuxtPlugin, useRuntimeConfig } from '#imports'
 
 export default defineNuxtPlugin((_nuxtApp) => {
-  const precognitionConfig = useRuntimeConfig().public.laravelPrecognition as ModuleOptions
+  const precognitionConfig = useRuntimeConfig().public.nuxtLaravelPrecognition as ModuleOptions
 
   /**
     * The configured axios client.

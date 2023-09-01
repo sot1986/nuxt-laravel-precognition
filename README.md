@@ -3,7 +3,7 @@ Get your module up and running quickly.
 
 Find and replace all on all files (CMD+SHIFT+F):
 - Name: Nuxt Laravel Precognition
-- Package name: @sot/nuxt-laravel-precognition
+- Package name: nuxt-laravel-precognition
 - Description: Module for Nuxt3, supporting Laravel Precognition
 -->
 
@@ -17,7 +17,7 @@ Find and replace all on all files (CMD+SHIFT+F):
 Module for Nuxt3, supporting Laravel Precognition using native $fetch.
 
 - [✨ &nbsp;Release Notes](/CHANGELOG.md)
-<!-- - [🏀 Online playground](https://stackblitz.com/github/your-org/@sot/nuxt-laravel-precognition?file=playground%2Fapp.vue) -->
+<!-- - [🏀 Online playground](https://stackblitz.com/github/your-org/nuxt-laravel-precognition?file=playground%2Fapp.vue) -->
 <!-- - [📖 &nbsp;Documentation](https://example.com) -->
 
 This is opinionated module. Although most functionalities have been replicated to work with $fetch API, there are minor differences
@@ -30,25 +30,25 @@ This is opinionated module. Although most functionalities have been replicated t
 
 ## Quick Setup
 
-1. Add `@sot/nuxt-laravel-precognition` dependency to your project
+1. Add `nuxt-laravel-precognition` dependency to your project
 
 ```bash
 # Using pnpm
-pnpm add -D @sot/nuxt-laravel-precognition
+pnpm add -D nuxt-laravel-precognition
 
 # Using yarn
-yarn add --dev @sot/nuxt-laravel-precognition
+yarn add --dev nuxt-laravel-precognition
 
 # Using npm
-npm install --save-dev @sot/nuxt-laravel-precognition
+npm install --save-dev nuxt-laravel-precognition
 ```
 
-2. Add `@sot/nuxt-laravel-precognition` to the `modules` section of `nuxt.config.ts`
+2. Add `nuxt-laravel-precognition` to the `modules` section of `nuxt.config.ts`
 
 ```js
 export default defineNuxtConfig({
   modules: [
-    '@sot/nuxt-laravel-precognition'
+    'nuxt-laravel-precognition'
   ]
 })
 ```
@@ -82,14 +82,14 @@ npm run release
 ```
 
 <!-- Badges -->
-[npm-version-src]: https://img.shields.io/npm/v/@sot/nuxt-laravel-precognition/latest.svg?style=flat&colorA=18181B&colorB=28CF8D
-[npm-version-href]: https://npmjs.com/package/@sot/nuxt-laravel-precognition
+[npm-version-src]: https://img.shields.io/npm/v/nuxt-laravel-precognition/latest.svg?style=flat&colorA=18181B&colorB=28CF8D
+[npm-version-href]: https://npmjs.com/package/nuxt-laravel-precognition
 
-[npm-downloads-src]: https://img.shields.io/npm/dm/@sot/nuxt-laravel-precognition.svg?style=flat&colorA=18181B&colorB=28CF8D
-[npm-downloads-href]: https://npmjs.com/package/@sot/nuxt-laravel-precognition
+[npm-downloads-src]: https://img.shields.io/npm/dm/nuxt-laravel-precognition.svg?style=flat&colorA=18181B&colorB=28CF8D
+[npm-downloads-href]: https://npmjs.com/package/nuxt-laravel-precognition
 
-[license-src]: https://img.shields.io/npm/l/@sot/nuxt-laravel-precognition.svg?style=flat&colorA=18181B&colorB=28CF8D
-[license-href]: https://npmjs.com/package/@sot/nuxt-laravel-precognition
+[license-src]: https://img.shields.io/npm/l/nuxt-laravel-precognition.svg?style=flat&colorA=18181B&colorB=28CF8D
+[license-href]: https://npmjs.com/package/nuxt-laravel-precognition
 
 [nuxt-src]: https://img.shields.io/badge/Nuxt-18181B?logo=nuxt.js
 [nuxt-href]: https://nuxt.com

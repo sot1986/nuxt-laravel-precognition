@@ -8,7 +8,7 @@ defineOptions({
   inheritAttrs: false,
 })
 
-const { $fetchCsrfToken, $api, $precognition } = useNuxtApp()
+const { $fetchCsrfToken, $api } = useNuxtApp()
 
 const PostsSchema = z.object({
   data: z.array(z.object({
@@ -106,6 +106,7 @@ function submitAvatar() {
 
 <template>
   <div class="container mx-auto mt-10 divide-y-2 space-y-4">
+    {{ $precognition }}
     <form @submit.prevent="form.submit({ onSuccess: (resp) => refresh().then(() => resp) })" @reset.prevent="form.reset()">
       <fieldset
         class="space-y-6"

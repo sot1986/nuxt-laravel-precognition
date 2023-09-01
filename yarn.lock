@@ -1945,48 +1945,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sot/nuxt-laravel-precognition@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "@sot/nuxt-laravel-precognition@workspace:."
-  dependencies:
-    "@antfu/eslint-config": ^0.40.2
-    "@nuxt/devtools": latest
-    "@nuxt/eslint-config": ^0.1.1
-    "@nuxt/kit": ^3.6.5
-    "@nuxt/module-builder": ^0.4.0
-    "@nuxt/schema": ^3.6.5
-    "@nuxt/test-utils": ^3.6.5
-    "@types/lodash.clonedeep": ^4.5.7
-    "@types/lodash.debounce": ^4.0.7
-    "@types/lodash.get": ^4.4.7
-    "@types/lodash.isequal": ^4.0.7
-    "@types/lodash.merge": ^4.0.7
-    "@types/lodash.omit": ^4.5.7
-    "@types/lodash.set": ^4.3.7
-    "@types/node": ^18.17.3
-    "@vitest/coverage-v8": ^0.34.3
-    "@vueuse/core": ^10.3.0
-    autoprefixer: ^10.4.15
-    changelogen: ^0.5.4
-    defu: ^6.1.2
-    eslint: ^8.47.0
-    happy-dom: ^10.11.0
-    lodash.clonedeep: ^4.5.0
-    lodash.get: ^4.4.2
-    lodash.isequal: ^4.0.8
-    lodash.merge: ^4.6.2
-    lodash.omit: ^4.5.0
-    lodash.set: ^4.3.2
-    nuxt: ^3.6.5
-    playwright-core: ^1.37.1
-    postcss: ^8.4.28
-    tailwindcss: ^3.3.3
-    vitest: ^0.34.1
-    vue-tsc: ^1.8.8
-    zod: ^3.22.2
-  languageName: unknown
-  linkType: soft
-
 "@tootallnate/once@npm:2":
   version: 2.0.0
   resolution: "@tootallnate/once@npm:2.0.0"
@@ -7967,6 +7925,48 @@ __metadata:
   checksum: 7825e8e924aed2f6cc7070db257eaff24afe264e80863334f3dd68fc09035d6e11a93ee794f153db21e74abc88b3b2ce4f9820e3b3f97e3fb7c7c78526b6636a
   languageName: node
   linkType: hard
+
+"nuxt-laravel-precognition@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "nuxt-laravel-precognition@workspace:."
+  dependencies:
+    "@antfu/eslint-config": ^0.40.2
+    "@nuxt/devtools": latest
+    "@nuxt/eslint-config": ^0.1.1
+    "@nuxt/kit": ^3.6.5
+    "@nuxt/module-builder": ^0.4.0
+    "@nuxt/schema": ^3.6.5
+    "@nuxt/test-utils": ^3.6.5
+    "@types/lodash.clonedeep": ^4.5.7
+    "@types/lodash.debounce": ^4.0.7
+    "@types/lodash.get": ^4.4.7
+    "@types/lodash.isequal": ^4.0.7
+    "@types/lodash.merge": ^4.0.7
+    "@types/lodash.omit": ^4.5.7
+    "@types/lodash.set": ^4.3.7
+    "@types/node": ^18.17.3
+    "@vitest/coverage-v8": ^0.34.3
+    "@vueuse/core": ^10.3.0
+    autoprefixer: ^10.4.15
+    changelogen: ^0.5.4
+    defu: ^6.1.2
+    eslint: ^8.47.0
+    happy-dom: ^10.11.0
+    lodash.clonedeep: ^4.5.0
+    lodash.get: ^4.4.2
+    lodash.isequal: ^4.0.8
+    lodash.merge: ^4.6.2
+    lodash.omit: ^4.5.0
+    lodash.set: ^4.3.2
+    nuxt: ^3.6.5
+    playwright-core: ^1.37.1
+    postcss: ^8.4.28
+    tailwindcss: ^3.3.3
+    vitest: ^0.34.1
+    vue-tsc: ^1.8.8
+    zod: ^3.22.2
+  languageName: unknown
+  linkType: soft
 
 "nuxt@npm:^3.6.5":
   version: 3.6.5

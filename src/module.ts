@@ -3,7 +3,7 @@ import { defu } from 'defu'
 
 // Module options TypeScript interface definition
 export interface ModuleOptions {
-  /** base validation timeout, @default 1000 ms */
+  /** base validation timeout, @default 1500 ms */
   validationTimeout: number
   /** fingerprint baseUrl, @default '' */
   fingerprintBaseUrl: string
@@ -19,7 +19,7 @@ export default defineNuxtModule<ModuleOptions>({
   },
   /** Default configuration options of the Nuxt module */
   defaults: {
-    validationTimeout: 1000,
+    validationTimeout: 1500,
     fingerprintBaseUrl: '',
   },
   setup(options, nuxt) {
