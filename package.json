@@ -47,6 +47,7 @@
     "@nuxt/kit": "^3.6.5",
     "defu": "^6.1.2",
     "lodash.clonedeep": "^4.5.0",
+    "lodash.debounce": "^4.0.8",
     "lodash.get": "^4.4.2",
     "lodash.isequal": "^4.0.8",
     "lodash.merge": "^4.6.2",
