@@ -1,9 +1,4 @@
-import debounce from 'lodash.debounce'
-import isequal from 'lodash.isequal'
-import get from 'lodash.get'
-import set from 'lodash.set'
-import omit from 'lodash.omit'
-import merge from 'lodash.merge'
+import { debounce, get, isEqual, merge, omit, set } from 'lodash-es'
 import { FetchError } from 'ofetch'
 import type { Config, NamedInputEvent, SimpleValidationErrors, Validator as TValidator, ValidationCallback, ValidationConfig, ValidationErrors, ValidatorListeners } from '../types/core'
 import { isFile } from '../utils/core'
@@ -93,7 +88,7 @@ export function createValidator(callback: ValidationCallback, initialData: Recor
   const setErrors = (value: ValidationErrors | SimpleValidationErrors) => {
     const prepared = toValidationErrors(value)
 
-    if (!isequal(errors, prepared)) {
+    if (!isEqual(errors, prepared)) {
       errors = prepared
 
       listeners.errorsChanged.forEach(callback => callback())
@@ -204,7 +199,7 @@ export function createValidator(callback: ValidationCallback, initialData: Recor
       },
       onBefore: () => {
         const beforeValidationResult = (config.onBeforeValidation ?? ((previous, next) => {
-          return !isequal(previous, next)
+          return !isEqual(previous, next)
         }))({ data, touched }, { data: oldData, touched: oldTouched })
 
         if (beforeValidationResult === false)

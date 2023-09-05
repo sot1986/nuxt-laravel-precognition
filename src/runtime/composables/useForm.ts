@@ -1,6 +1,4 @@
-import get from 'lodash.get'
-import set from 'lodash.set'
-import cloneDeep from 'lodash.clonedeep'
+import { cloneDeep, get, set } from 'lodash-es'
 import type { Ref } from 'vue'
 import type { Form } from '../types/useForm'
 import type { Config, NestedKeyOf, RequestMethod, ValidationConfig, ValidationErrors } from '../types/core'
@@ -157,13 +155,10 @@ export function useForm<Data extends Record<string, unknown>>(
     reset(...names) {
       const original = cloneDeep(resolveInitialData(inputs))
 
-      if (names.length === 0) {
-        // @ts-expect-error safe assignment form[name] to original[name]
+      if (names.length === 0)
         originalInputs.forEach(name => (form[name] = original[name]))
-      }
-      else {
+      else
         names.forEach(name => set(form, name, get(original, name)))
-      }
 
       validator.reset(...names)
 
