@@ -53,33 +53,99 @@ export default defineNuxtConfig({
 })
 ```
 
-That's it! You can now use Nuxt Laravel Precognition in your Nuxt app ✨
+3. Create one plugin where you initialize the $fetch client, and then use it as precognition client:
 
-## Development
+```typescript
+import { defineNuxtPlugin, useCookie, useNuxtApp } from '#app'
 
-```bash
-# Install dependencies
-npm install
+export default defineNuxtPlugin(() => {
+  function getCsrfToken() {
+    // grab sanctum headers
+    return useCookie('XSRF-TOKEN', { default: () => '' }).value
+  }
 
-# Generate type stubs
-npm run dev:prepare
+  function mergeHeaders(options: { headers?: HeadersInit }, newHeaders: HeadersInit) {
+    const headersToBeMerged = new Headers(newHeaders) // cast newHeaders to Headers instance
 
-# Develop with the playground
-npm run dev
+    // check if request has headers to be merged with newHeaders
+    if (!options.headers) { 
+      options.headers = headersToBeMerged
+      return
+    }
 
-# Build the playground
-npm run dev:build
+    options.headers = new Headers(options.headers) // cast requestHeaders to Headers instance
 
-# Run ESLint
-npm run lint
+    // merge the newHeaders with requestHeaders
+    Array.from([...headersToBeMerged.entries()]).forEach(([key, value]) => {
+      (options.headers as Headers).set(key, value)
+    })
+  }
 
-# Run Vitest
-npm run test
-npm run test:watch
+  const api = $fetch.create({
+    baseURL: 'http://localhost',
+    headers: {
+      Accept: 'application/json',
+    },
+    credentials: 'include',
+    onRequest: ({ options }) => {
+      const csrfToken = getCsrfToken() // read sanctum csrf token
 
-# Release new version
-npm run release
+      if (!csrfToken)
+        return
+
+      mergeHeaders(options,  ['X-XSRF-TOKEN', csrfToken]) // attach the csrf token as X-XSRF-TOKEN header
+    },
+  })
+
+  const { $precognition } = useNuxtApp()
+
+  $precognition.client.use(api)
+
+  function fetchCsrfToken() {
+    return api('/sanctum/csrf-cookie')
+  }
+
+  return {
+    provide: {
+      api,
+      fetchCsrfToken,
+    },
+  }
+})
 ```
+
+4. Remember to expose laravel Precognition Headers in your config/cors.php laravel file:
+
+```php
+return [
+
+    /*
+    |--------------------------------------------------------------------------
+    | Cross-Origin Resource Sharing (CORS) Configuration
+    |--------------------------------------------------------------------------
+    |
+    */
+
+    'paths' => ['*'],
+
+    'allowed_methods' => ['*'],
+
+    'allowed_origins' => ['*'],
+
+    'allowed_origins_patterns' => [env('FRONTEND_URL', 'http://localhost:3000')],
+
+    'allowed_headers' => ['*'],
+
+    'exposed_headers' => ['Precognition', 'Precognition-Success'],
+
+    'max_age' => 0,
+
+    'supports_credentials' => true,
+
+];
+```
+
+5. You can use the UseForm composable that is autoimported by this module.
 
 <!-- Badges -->
 [npm-version-src]: https://img.shields.io/npm/v/nuxt-laravel-precognition/latest.svg?style=flat&colorA=18181B&colorB=28CF8D
