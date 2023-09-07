@@ -1,3 +1,4 @@
+<!-- eslint-disable no-console -->
 <!-- eslint-disable unused-imports/no-unused-imports -->
 <script setup lang="ts">
 import { z } from 'zod'
