@@ -156,7 +156,8 @@ export function useForm<Data extends Record<string, unknown>>(
       const original = cloneDeep(resolveInitialData(inputs))
 
       if (names.length === 0)
-        originalInputs.forEach(name => (form[name] = original[name]))
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-return
+        originalInputs.forEach(name => (form[name] = original[name] as any))
       else
         names.forEach(name => set(form, name, get(original, name)))
 

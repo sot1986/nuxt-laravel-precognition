@@ -1,6 +1,6 @@
 import type { FetchError, FetchResponse } from 'ofetch'
 
-export type StatusHandler = (response: FetchResponse<unknown>, error?: FetchError) => FetchResponse<unknown>
+export type StatusHandler = (response: FetchResponse<unknown>, error?: FetchError) => unknown
 
 export type ValidationErrors = Record<string, Array<string>>
 
@@ -14,8 +14,8 @@ export type Config = NonNullable<Parameters<typeof $fetch>[1]> & {
   bodyAs?: (data: Record<string, unknown>) => NonNullable<Parameters<typeof $fetch>[1]>['body']
   onBefore?: () => boolean | undefined
   onStart?: () => void
-  onSuccess?: (response: FetchResponse<unknown>) => Promise<FetchResponse<unknown>>
-  onPrecognitionSuccess?: (response: FetchResponse<unknown>) => Promise<FetchResponse<unknown>>
+  onSuccess?: (response: FetchResponse<unknown>) => unknown
+  onPrecognitionSuccess?: (response: FetchResponse<unknown>) => unknown
   onValidationError?: StatusHandler
   onUnauthorized?: StatusHandler
   onForbidden?: StatusHandler
@@ -37,11 +37,11 @@ export type ValidationConfig = Config & {
 export type SuccessResolver = (response: FetchResponse<unknown>) => boolean
 
 export interface Client {
-  get(url: string, data?: Record<string, unknown>, config?: Config): Promise< FetchResponse<unknown> | null>
-  post(url: string, data?: Record<string, unknown>, config?: Config): Promise<FetchResponse<unknown> | null>
-  patch(url: string, data?: Record<string, unknown>, config?: Config): Promise<FetchResponse<unknown> | null>
-  put(url: string, data?: Record<string, unknown>, config?: Config): Promise<FetchResponse<unknown> | null>
-  delete(url: string, data?: Record<string, unknown>, config?: Config): Promise<FetchResponse<unknown> | null>
+  get(url: string, data?: Record<string, unknown>, config?: Config): Promise<unknown>
+  post(url: string, data?: Record<string, unknown>, config?: Config): Promise<unknown>
+  patch(url: string, data?: Record<string, unknown>, config?: Config): Promise<unknown>
+  put(url: string, data?: Record<string, unknown>, config?: Config): Promise<unknown>
+  delete(url: string, data?: Record<string, unknown>, config?: Config): Promise<unknown>
   use(client: typeof $fetch): Client
   determineSuccessUsing(callback: SuccessResolver): Client
   client(): typeof $fetch
@@ -73,12 +73,12 @@ export interface ValidatorListeners {
 export type RequestMethod = 'get' | 'post' | 'patch' | 'put' | 'delete'
 
 export type ValidationCallback = (client: {
-  get(url: string, data?: Record<string, unknown>, config?: ValidationConfig): Promise<FetchResponse<unknown> | null>
-  post(url: string, data?: Record<string, unknown>, config?: ValidationConfig): Promise<FetchResponse<unknown> | null>
-  patch(url: string, data?: Record<string, unknown>, config?: ValidationConfig): Promise<FetchResponse<unknown> | null>
-  put(url: string, data?: Record<string, unknown>, config?: ValidationConfig): Promise<FetchResponse<unknown> | null>
-  delete(url: string, data?: Record<string, unknown>, config?: ValidationConfig): Promise<FetchResponse<unknown> | null>
-}) => Promise<FetchResponse<unknown> | null>
+  get(url: string, data?: Record<string, unknown>, config?: ValidationConfig): Promise<unknown>
+  post(url: string, data?: Record<string, unknown>, config?: ValidationConfig): Promise<unknown>
+  patch(url: string, data?: Record<string, unknown>, config?: ValidationConfig): Promise<unknown>
+  put(url: string, data?: Record<string, unknown>, config?: ValidationConfig): Promise<unknown>
+  delete(url: string, data?: Record<string, unknown>, config?: ValidationConfig): Promise<unknown>
+}) => Promise<unknown>
 
 interface NamedEventTarget extends EventTarget {
   name: string

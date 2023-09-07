@@ -3,6 +3,7 @@ import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest'
 import type { FetchResponse } from 'ofetch'
 import { FetchError } from 'ofetch'
 import {
+  assertIsFetchResponse,
   assertIsServerGeneratedError,
   getHeaders,
   hasFiles,
@@ -133,7 +134,7 @@ describe('test plugin correctly provide client', () => {
 
     const resp = await client.get('url', {}, { precognitive: false })
 
-    expect(resp?._data).toEqual({ message: 'Custom client' })
+    expect(resp).toEqual({ message: 'Custom client' })
     expect(parameters[0]).toBe('url')
     expect(parameters[1]?.method).toBe('get')
     expect(parameters[1]?.precognitive).toBe(false)
@@ -160,14 +161,12 @@ describe('test plugin correctly provide client', () => {
       onStartCheck = true
     }
     let onPrecognitionSuccessCheck = false
-    function onPrecognitionSuccess(value: FetchResponse<unknown>) {
+    function onPrecognitionSuccess() {
       onPrecognitionSuccessCheck = true
-      return Promise.resolve(value)
     }
     let onSuccessCheck = false
-    function onSuccess(value: FetchResponse<unknown>) {
+    function onSuccess() {
       onSuccessCheck = true
-      return Promise.resolve(value)
     }
     let onFinishCheck = false
     function onFinish() {
@@ -477,6 +476,23 @@ describe('test core functions', () => {
 
   test.each([400, 419, 401, 403, 500])('isSuccess detect other status code', (code) => {
     expect(isSuccess(code)).toBe(false)
+  })
+
+  test.each([
+    { data: { name: 'Name' } },
+  ])('assertIsFetchResponse pass if evaluate Fetch response', ({ data }) => {
+    const resp = new Response(undefined, { status: 200 }) as FetchResponse<typeof data>
+    resp._data = data
+
+    assertIsFetchResponse(resp)
+
+    expect(resp._data).toEqual(data)
+  })
+
+  test.each([
+    { data: { name: 'name' }, status: 204 },
+  ])('assertIsFetchResponse fails if evaluate non Fetch response', (data) => {
+    expect(() => assertIsFetchResponse(data, 'Expected Fetch Response')).throws('Expected Fetch Response')
   })
 })
 

@@ -1,7 +1,7 @@
 import type { FetchResponse } from 'ofetch'
 import type { ModuleOptions } from '../module'
 import type { Client, Config } from './types/core'
-import { assertIsServerGeneratedError, isSuccess, mergeConfig, resolveConfig, resolveStatusHandler, validatePrecognitionResponse } from './utils/core'
+import { assertIsFetchResponse, assertIsServerGeneratedError, isFetchResponse, isSuccess, mergeConfig, resolveConfig, resolveStatusHandler, validatePrecognitionResponse } from './utils/core'
 import { defineNuxtPlugin, useRuntimeConfig } from '#imports'
 
 export default defineNuxtPlugin((_nuxtApp) => {
@@ -26,7 +26,7 @@ export default defineNuxtPlugin((_nuxtApp) => {
   /**
    * Send and handle a new request.
    */
-  async function request(url: string, userConfig: Config): Promise<FetchResponse<unknown> | null> {
+  async function request(url: string, userConfig: Config): Promise<unknown> {
     const config = resolveConfig(userConfig)
 
     if ((config.onBefore ?? (() => true))() === false)
@@ -43,18 +43,24 @@ export default defineNuxtPlugin((_nuxtApp) => {
 
       const { status } = response
 
-      let payload = response
+      let payload: unknown = response
+
+      assertIsFetchResponse(payload, 'Expected to receive FetchResponse')
 
       if (config.precognitive && config.onPrecognitionSuccess && successResolver(payload))
         payload = await Promise.resolve(config.onPrecognitionSuccess(payload) ?? payload)
 
-      if (config.onSuccess && isSuccess(status))
+      if (config.onSuccess && isSuccess(status)) {
+        assertIsFetchResponse(payload, 'Expected to receive FetchResponse for onSuccess handler')
         payload = await Promise.resolve(config.onSuccess(payload) ?? payload)
+      }
 
       const statusHandler = resolveStatusHandler(config, status)
         ?? (response => response)
 
-      return statusHandler(payload) ?? payload
+      payload = isFetchResponse(payload) ? statusHandler(payload) : payload
+
+      return isFetchResponse(payload) ? payload._data : payload
     }
     catch (error) {
       assertIsServerGeneratedError(error)

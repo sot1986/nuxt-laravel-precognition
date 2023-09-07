@@ -197,3 +197,16 @@ export function resolveInitialData<T extends Record<string, unknown>>(data: T | 
     ? data()
     : data
 }
+
+export function assertIsFetchResponse(
+  value: unknown, message = 'Expected FetchResponse',
+): asserts value is FetchResponse<unknown> {
+  if (isFetchResponse(value))
+    return
+
+  throw createError(message)
+}
+
+export function isFetchResponse(value: unknown): value is FetchResponse<unknown> {
+  return (value instanceof Response)
+}

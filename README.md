@@ -145,7 +145,7 @@ return [
 ];
 ```
 
-5. You can use the UseForm composable that is autoimported by this module.
+5. You can use the useForm composable that is autoimported by this module.
 
 <!-- Badges -->
 [npm-version-src]: https://img.shields.io/npm/v/nuxt-laravel-precognition/latest.svg?style=flat&colorA=18181B&colorB=28CF8D

@@ -96,6 +96,17 @@ function bodyAs(data: Record<string, unknown>) {
   return formData
 }
 
+async function submitPeople() {
+  const response = await form.submit({
+    onSuccess: (resp) => {
+      console.log('on success', resp)
+      refresh()
+    },
+  })
+
+  console.log('submit', response)
+}
+
 function submitAvatar() {
   if (!avatar.avatar)
     return
@@ -107,7 +118,7 @@ function submitAvatar() {
 <template>
   <div class="container mx-auto mt-10 divide-y-2 space-y-4">
     {{ $precognition }}
-    <form @submit.prevent="form.submit({ onSuccess: (resp) => refresh().then(() => resp) })" @reset.prevent="form.reset()">
+    <form @submit.prevent="submitPeople" @reset.prevent="form.reset()">
       <fieldset
         class="space-y-6"
       >
