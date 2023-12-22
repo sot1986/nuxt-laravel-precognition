@@ -1,7 +1,7 @@
 import { debounce, get, isEqual, merge, omit, set } from 'lodash-es'
 import { FetchError } from 'ofetch'
 import type { Config, NamedInputEvent, SimpleValidationErrors, Validator as TValidator, ValidationCallback, ValidationConfig, ValidationErrors, ValidatorListeners } from '../types/core'
-import { isFile } from '../utils/core'
+import { isFile } from '../utils/core.ts'
 import { useNuxtApp } from '#imports'
 
 export function createValidator(callback: ValidationCallback, initialData: Record<string, unknown> = {}): TValidator {

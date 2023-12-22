@@ -8,5 +8,9 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
+  typescript: {
+    typeCheck: true,
+    strict: true,
+  },
   css: ['~/assets/css/main.css'],
 })
