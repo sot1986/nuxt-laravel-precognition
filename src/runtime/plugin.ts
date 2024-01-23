@@ -1,7 +1,7 @@
 import type { FetchResponse } from 'ofetch'
-import type { ModuleOptions } from '../module.ts'
-import type { Client, Config } from './types/core.ts'
-import { assertIsFetchResponse, assertIsServerGeneratedError, isFetchResponse, isSuccess, mergeConfig, resolveConfig, resolveStatusHandler, validatePrecognitionResponse } from './utils/core.ts'
+import type { ModuleOptions } from '../module'
+import type { Client, Config } from './types/core'
+import { assertIsFetchResponse, assertIsServerGeneratedError, isFetchResponse, isSuccess, mergeConfig, resolveConfig, resolveStatusHandler, validatePrecognitionResponse } from './utils/core'
 import { defineNuxtPlugin, useRuntimeConfig } from '#imports'
 
 export default defineNuxtPlugin((_nuxtApp) => {

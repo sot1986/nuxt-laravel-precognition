@@ -1,7 +1,7 @@
 import { debounce, get, isEqual, merge, omit, set } from 'lodash-es'
 import { FetchError } from 'ofetch'
 import type { Config, NamedInputEvent, SimpleValidationErrors, Validator as TValidator, ValidationCallback, ValidationConfig, ValidationErrors, ValidatorListeners } from '../types/core'
-import { isFile } from '../utils/core.ts'
+import { isFile } from '../utils/core'
 import { useNuxtApp } from '#imports'
 
 export function createValidator(callback: ValidationCallback, initialData: Record<string, unknown> = {}): TValidator {
@@ -47,22 +47,32 @@ export function createValidator(callback: ValidationCallback, initialData: Recor
    */
   let validator = createValidator()
 
-  const setValidating = (value: boolean) => {
+  /**
+     * Set the validating inputs.
+     *
+     * Returns an array of listeners that should be invoked once all state
+     * changes have taken place.
+     */
+  const setValidating = (value: boolean): (() => void)[] => {
     if (value !== validating) {
       validating = value
 
-      listeners.validatingChanged.forEach(callback => callback())
+      return listeners.validatingChanged
     }
+
+    return []
   }
 
-  const setValidated = (value: Array<string>) => {
+  const setValidated = (value: Array<string>): (() => void)[] => {
     const uniqueNames = [...new Set(value)]
 
     if (validated.length !== uniqueNames.length || !uniqueNames.every(name => validated.includes(name))) {
       validated = uniqueNames
 
-      listeners.validatedChanged.forEach(callback => callback())
+      return listeners.validatedChanged
     }
+
+    return []
   }
 
   /**
@@ -75,32 +85,36 @@ export function createValidator(callback: ValidationCallback, initialData: Recor
    */
   let touched: Array<string> = []
 
-  const setTouched = (value: Array<string>) => {
+  const setTouched = (value: Array<string>): (() => void)[] => {
     const uniqueNames = [...new Set(value)]
 
     if (touched.length !== uniqueNames.length || !uniqueNames.every(name => touched.includes(name))) {
       touched = uniqueNames
 
-      listeners.touchedChanged.forEach(callback => callback())
+      return listeners.touchedChanged
     }
+
+    return []
   }
 
-  const setErrors = (value: ValidationErrors | SimpleValidationErrors) => {
+  const setErrors = (value: ValidationErrors | SimpleValidationErrors): (() => void)[] => {
     const prepared = toValidationErrors(value)
 
     if (!isEqual(errors, prepared)) {
       errors = prepared
 
-      listeners.errorsChanged.forEach(callback => callback())
+      return listeners.errorsChanged
     }
+
+    return []
   }
 
-  const forgetError = (name: string | NamedInputEvent) => {
+  const forgetError = (name: string | NamedInputEvent): (() => void)[] => {
     const newErrors = { ...errors }
 
     delete newErrors[resolveName(name)]
 
-    setErrors(newErrors)
+    return setErrors(newErrors)
   }
 
   /**
@@ -169,15 +183,18 @@ export function createValidator(callback: ValidationCallback, initialData: Recor
       validate,
       timeout: config.timeout ?? 5000,
       onValidationError: (response, fetchError) => {
-        setValidated([...validated, ...validate])
+        [...setValidated([...validated, ...validate]),
+        ].forEach(listener => listener())
 
         if (
           typeof response._data === 'object'
           && response.status === 422
           && response._data
           && 'errors' in response._data
-        )
-          setErrors(merge(omit({ ...errors }, validate), response._data.errors))
+        ) {
+          [...setErrors(merge(omit({ ...errors }, validate), response._data.errors)),
+          ].forEach(listener => listener())
+        }
 
         if (config.onValidationError)
           return config.onValidationError(response, fetchError)
@@ -185,12 +202,14 @@ export function createValidator(callback: ValidationCallback, initialData: Recor
         throw fetchError ?? new Error('Unknown error')
       },
       onSuccess: (response) => {
-        setValidated([...validated, ...validate])
+        setValidated([...validated, ...validate]).forEach(listener => listener())
 
         return Promise.resolve(response)
       },
       onPrecognitionSuccess: (response) => {
-        setErrors(omit({ ...errors }, validate))
+        [...setValidated([...validated, ...validate]),
+          ...setErrors(omit({ ...errors }, validate)),
+        ].forEach(listener => listener())
 
         if (config.onPrecognitionSuccess)
           return config.onPrecognitionSuccess(response)
@@ -217,12 +236,12 @@ export function createValidator(callback: ValidationCallback, initialData: Recor
         return true
       },
       onStart: () => {
-        setValidating(true);
+        setValidating(true).forEach(listener => listener());
 
         (config.onStart ?? (() => null))()
       },
       onFinish: () => {
-        setValidating(false)
+        setValidating(false).forEach(listener => listener())
 
         oldTouched = validatingTouched!
 
@@ -254,7 +273,7 @@ export function createValidator(callback: ValidationCallback, initialData: Recor
     name = resolveName(name)
 
     if (get(oldData, name) !== value)
-      setTouched([name, ...touched])
+      setTouched([name, ...touched]).forEach(listener => listener())
 
     if (touched.length === 0)
       return
@@ -277,7 +296,7 @@ export function createValidator(callback: ValidationCallback, initialData: Recor
         ? input
         : [resolveName(input)]
 
-      setTouched([...touched, ...inputs])
+      setTouched([...touched, ...inputs]).forEach(listener => listener())
 
       return form
     },
@@ -286,20 +305,20 @@ export function createValidator(callback: ValidationCallback, initialData: Recor
     errors: () => errors,
     hasErrors,
     setErrors(value) {
-      setErrors(value)
+      setErrors(value).forEach(listener => listener())
 
       return form
     },
     forgetError(name) {
-      forgetError(name)
+      forgetError(name).forEach(listener => listener())
 
       return form
     },
     reset(...names) {
       if (names.length === 0) {
-        setTouched([])
-        setErrors({})
-        setValidated([])
+        setTouched([]).forEach(listener => listener())
+        setErrors({}).forEach(listener => listener())
+        setValidated([]).forEach(listener => listener())
       }
       else {
         const newTouched = [...touched]
@@ -311,7 +330,7 @@ export function createValidator(callback: ValidationCallback, initialData: Recor
           set(oldData, name, get(initialData, name))
         })
 
-        setTouched(newTouched)
+        setTouched(newTouched).forEach(listener => listener())
       }
 
       return form

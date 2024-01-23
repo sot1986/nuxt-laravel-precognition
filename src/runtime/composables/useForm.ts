@@ -1,9 +1,9 @@
 import { cloneDeep, get, set } from 'lodash-es'
 import type { Ref } from 'vue'
-import type { Form } from '../types/useForm.ts'
-import type { Config, NestedKeyOf, RequestMethod, ValidationConfig, ValidationErrors } from '../types/core.ts'
-import { createValidator, resolveName, toSimpleValidationErrors } from '../utils/validator.ts'
-import { resolveInitialData, resolveString } from '../utils/core.ts'
+import type { Form } from '../types/useForm'
+import type { Config, NestedKeyOf, RequestMethod, ValidationConfig, ValidationErrors } from '../types/core'
+import { createValidator, resolveName, toSimpleValidationErrors } from '../utils/validator'
+import { resolveInitialData, resolveString } from '../utils/core'
 import { reactive, ref, toRaw, useNuxtApp } from '#imports'
 
 export function useForm<Data extends Record<string, unknown>>(
@@ -58,6 +58,9 @@ export function useForm<Data extends Record<string, unknown>>(
 
       // @ts-expect-error test description
       form.errors = toSimpleValidationErrors(validator.errors())
+
+      // @ts-expect-error test description
+      valid.value = validator.valid()
     })
 
   /**
