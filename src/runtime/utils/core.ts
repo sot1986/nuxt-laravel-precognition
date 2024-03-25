@@ -147,7 +147,7 @@ export function isFile(value: unknown): value is Blob | File | FileList {
     return true
 
   // eslint-disable-next-line n/prefer-global/process
-  if (process.server)
+  if (import.meta.server)
     return false
 
   if (typeof File !== 'undefined' && value instanceof File)
