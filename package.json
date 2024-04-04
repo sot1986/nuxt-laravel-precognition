@@ -45,30 +45,29 @@
     "test:coverage": "vitest --coverage"
   },
   "dependencies": {
-    "@nuxt/kit": "^3.6.5",
-    "defu": "^6.1.2",
+    "@nuxt/kit": "^3.11.1",
+    "defu": "^6.1.4",
     "lodash-es": "^4.17.21"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.40.2",
+    "@antfu/eslint-config": "^0.40.3",
     "@nuxt/devtools": "latest",
     "@nuxt/eslint-config": "^0.1.1",
     "@nuxt/module-builder": "^0.4.0",
-    "@nuxt/schema": "^3.6.5",
-    "@nuxt/test-utils": "^3.6.5",
-    "@types/lodash-es": "^4.17.9",
-    "@types/node": "^18.17.3",
-    "@vitest/coverage-v8": "^0.34.3",
-    "autoprefixer": "^10.4.15",
-    "changelogen": "^0.5.4",
-    "eslint": "^8.47.0",
-    "happy-dom": "^10.11.0",
-    "nuxt": "^3.6.5",
-    "postcss": "^8.4.28",
-    "tailwindcss": "^3.3.3",
-    "typescript": "^5.3.3",
+    "@nuxt/schema": "^3.11.1",
+    "@nuxt/test-utils": "^3.12.0",
+    "@types/lodash-es": "^4.17.12",
+    "@types/node": "^18.19.29",
+    "@vitest/coverage-v8": "^0.34.6",
+    "autoprefixer": "^10.4.19",
+    "changelogen": "^0.5.5",
+    "eslint": "^8.57.0",
+    "nuxt": "^3.11.1",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.3",
+    "typescript": "^5.4.3",
     "vitest": "^0.33.0",
-    "vue-tsc": "^1.8.22",
-    "zod": "^3.22.2"
+    "vue-tsc": "^1.8.27",
+    "zod": "^3.22.4"
   }
 }
