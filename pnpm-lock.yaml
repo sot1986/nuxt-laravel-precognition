@@ -33,7 +33,7 @@ devDependencies:
     version: 3.8.2(rollup@3.29.4)
   '@nuxt/test-utils':
     specifier: ^3.6.5
-    version: 3.8.1(playwright-core@1.40.0)(rollup@3.29.4)(vitest@0.33.0)(vue@3.3.8)
+    version: 3.8.1(rollup@3.29.4)(vitest@0.33.0)(vue@3.3.8)
   '@types/lodash-es':
     specifier: ^4.17.9
     version: 4.17.11
@@ -58,9 +58,6 @@ devDependencies:
   nuxt:
     specifier: ^3.6.5
     version: 3.8.2(@types/node@18.18.11)(eslint@8.54.0)(rollup@3.29.4)(typescript@5.3.3)(vite@4.5.0)(vue-tsc@1.8.22)
-  playwright-core:
-    specifier: ^1.37.1
-    version: 1.40.0
   postcss:
     specifier: ^8.4.28
     version: 8.4.31
@@ -1633,7 +1630,7 @@ packages:
       - supports-color
     dev: true
 
-  /@nuxt/test-utils@3.8.1(playwright-core@1.40.0)(rollup@3.29.4)(vitest@0.33.0)(vue@3.3.8):
+  /@nuxt/test-utils@3.8.1(rollup@3.29.4)(vitest@0.33.0)(vue@3.3.8):
     resolution: {integrity: sha512-8ZQ+OZ7z5Sc5KG2aCvk0piheYSpGb2UQJMCWr8ORwEyZIw4awrkkwGzUY06e344E4StvJB8zxN122MEcFNOkow==}
     engines: {node: ^14.18.0 || >=16.10.0}
     peerDependencies:
@@ -1657,7 +1654,6 @@ packages:
       get-port-please: 3.1.1
       ofetch: 1.3.3
       pathe: 1.1.1
-      playwright-core: 1.40.0
       ufo: 1.3.2
       vitest: 0.33.0(happy-dom@10.11.2)
       vue: 3.3.8(typescript@5.3.3)
@@ -6603,12 +6599,6 @@ packages:
       jsonc-parser: 3.2.0
       mlly: 1.4.2
       pathe: 1.1.1
-
-  /playwright-core@1.40.0:
-    resolution: {integrity: sha512-fvKewVJpGeca8t0ipM56jkVSU6Eo0RmFvQ/MaCQNDYm+sdvKkMBBWTE1FdeMqIdumRaXXjZChWHvIzCGM/tA/Q==}
-    engines: {node: '>=16'}
-    hasBin: true
-    dev: true
 
   /pluralize@8.0.0:
     resolution: {integrity: sha512-Nc3IT5yHzflTfbjgqWcCPpo7DaKy4FnpB0l/zCAW0Tc7jxAiuqSxHasntB3D7887LSrA93kDJ9IXovxJYxyLCA==}

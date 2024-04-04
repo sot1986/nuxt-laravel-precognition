@@ -64,7 +64,6 @@
     "eslint": "^8.47.0",
     "happy-dom": "^10.11.0",
     "nuxt": "^3.6.5",
-    "playwright-core": "^1.37.1",
     "postcss": "^8.4.28",
     "tailwindcss": "^3.3.3",
     "typescript": "^5.3.3",
