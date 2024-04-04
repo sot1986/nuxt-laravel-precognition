@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v0.0.11
+
+[compare changes](https://github.com/sot1986/nuxt-laravel-precognition/compare/v0.0.10...v0.0.11)
+
+### 🩹 Fixes
+
+- Opt in to `import.meta.*` properties ([b906f3a](https://github.com/sot1986/nuxt-laravel-precognition/commit/b906f3a))
+
+### 📖 Documentation
+
+- Use new `nuxi module add` command in installation ([38397fa](https://github.com/sot1986/nuxt-laravel-precognition/commit/38397fa))
+
+### ❤️ Contributors
+
+- Daniel Roe ([@danielroe](http://github.com/danielroe))
+
 ## v0.0.10
 
 [compare changes](https://github.com/sot1986/nuxt-laravel-precognition/compare/v0.0.9...v0.0.10)
