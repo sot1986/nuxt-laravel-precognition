@@ -33,14 +33,7 @@ This is opinionated module. Although most functionalities have been replicated t
 1. Add `nuxt-laravel-precognition` dependency to your project
 
 ```bash
-# Using pnpm
-pnpm add -D nuxt-laravel-precognition
-
-# Using yarn
-yarn add --dev nuxt-laravel-precognition
-
-# Using npm
-npm install --save-dev nuxt-laravel-precognition
+npx nuxi@latest module add laravel-precognition
 ```
 
 2. Add `nuxt-laravel-precognition` to the `modules` section of `nuxt.config.ts`
