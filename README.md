@@ -16,6 +16,12 @@ Find and replace all on all files (CMD+SHIFT+F):
 
 Module for Nuxt3, supporting Laravel Precognition using native $fetch.
 
+## New Nuxt-Precognition Released!!
+If you want to give a chance to the latest module (fully decoupled from Laravel), here the [link](https://www.npmjs.com/package/nuxt-precognition).  
+This new module has a better API, compatible with any backed, and can work with __nitro__ as well!!
+__I strongly need your feedback before deprecating this one__. Thank you.
+
+
 - [✨ &nbsp;Release Notes](/CHANGELOG.md)
 <!-- - [🏀 Online playground](https://stackblitz.com/github/your-org/nuxt-laravel-precognition?file=playground%2Fapp.vue) -->
 <!-- - [📖 &nbsp;Documentation](https://example.com) -->
