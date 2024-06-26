@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.0.12
+
+[compare changes](https://github.com/sot1986/nuxt-laravel-precognition/compare/v0.0.11...v0.0.12)
+
+### 🏡 Chore
+
+- Indicate compatibility with new v4 major ([5029dbb](https://github.com/sot1986/nuxt-laravel-precognition/commit/5029dbb))
+
+### ❤️ Contributors
+
+- Daniel Roe ([@danielroe](http://github.com/danielroe))
+
 ## v0.0.11
 
 [compare changes](https://github.com/sot1986/nuxt-laravel-precognition/compare/v0.0.10...v0.0.11)
