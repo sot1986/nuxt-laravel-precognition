@@ -7,7 +7,29 @@ Find and replace all on all files (CMD+SHIFT+F):
 - Description: Module for Nuxt3, supporting Laravel Precognition
 -->
 
-# Nuxt Laravel Precognition
+# Nuxt (Laravel) Precognition - DEPRECATED
+
+This package has been deprecated. I recommend using [nuxt-precognition](https://www.npmjs.com/package/nuxt-precognition) for future projects.
+
+## Why switch to nuxt-precognition?
+- Nitro support.
+- Backend Agnostic.
+- Simplify and more robust API.
+- Frontend validation.
+
+[🚀 Switch to nuxt-precognition](https://www.npmjs.com/package/nuxt-precognition)
+
+## How to migrate.
+Api of the new module is very similar but `useForm` now support generic promises, therefor input arguments are different (specify method and URL are no longer required).
+
+### Benefits on migrating
+Even if you work with Laravel only backend, the new API is better and more flexible. There is no need to use different parameters (`bodyAs`) for sending FormData or URLSearchParams.
+You won't need a Laravel backend only for contact Form!!
+
+Following the idea Nuxt is becoming a FULL stack framework, why not adding this awesome funciontality of precognitive validation? For any comments or suggestion don't hesitate of contact me!!
+
+
+## Nuxt (Laravel) Precognition
 
 [![npm version][npm-version-src]][npm-version-href]
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
@@ -15,12 +37,6 @@ Find and replace all on all files (CMD+SHIFT+F):
 [![Nuxt][nuxt-src]][nuxt-href]
 
 Module for Nuxt3, supporting Laravel Precognition using native $fetch.
-
-## New Nuxt-Precognition Released!!
-If you want to give a chance to the latest module (fully decoupled from Laravel), here the [link](https://www.npmjs.com/package/nuxt-precognition).  
-This new module has a better API, compatible with any backed, and can work with __nitro__ as well!!
-__I strongly need your feedback before deprecating this one__. Thank you.
-
 
 - [✨ &nbsp;Release Notes](/CHANGELOG.md)
 <!-- - [🏀 Online playground](https://stackblitz.com/github/your-org/nuxt-laravel-precognition?file=playground%2Fapp.vue) -->
